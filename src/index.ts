@@ -21,6 +21,8 @@ app.post("/api/send", async (c) => {
   const schema = z.object({
     to: z.union([z.string(), z.array(z.string())]),
     subject: z.string(),
+    from: z.string().optional(),
+    fromName: z.string().optional(),
     replyTo: z.string().optional(),
     text: z.string().optional(),
     html: z.string().optional(),
@@ -36,7 +38,7 @@ app.post("/api/send", async (c) => {
 
   try {
     const options: EmailOptions = {
-      from: c.env.DEFAULT_SENDER || "no-reply@mail.wify.my",
+      from: result.data.from || c.env.DEFAULT_SENDER || "no-reply@mail.wify.my",
       ...result.data
     };
 

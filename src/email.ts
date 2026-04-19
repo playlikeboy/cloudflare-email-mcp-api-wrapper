@@ -9,6 +9,7 @@ export interface Attachment {
 
 export interface EmailOptions {
   from: string;
+  fromName?: string;
   to: string | string[];
   cc?: string | string[];
   bcc?: string | string[];
@@ -25,7 +26,7 @@ export interface EmailOptions {
 export async function createEmailMessage(options: EmailOptions): Promise<EmailMessage> {
   const msg = createMimeMessage();
   
-  msg.setSender(options.from);
+  msg.setSender(options.fromName ? { name: options.fromName, addr: options.from } : options.from);
   
   // Handle recipients
   const toList = Array.isArray(options.to) ? options.to : [options.to];
