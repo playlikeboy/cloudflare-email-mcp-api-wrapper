@@ -15,16 +15,10 @@ This project exposes an MCP-compatible JSON-RPC endpoint at:
 
 ### send_email
 
-Inputs match the API payload shape (`to`, `subject`, `text/html`, `cc`, `bcc`, `replyTo`, `headers`, `attachments`, etc.).
-
-Optional arguments for `send_email` include:
-
-- `from`
-- `fromName`
-- `cc`
-- `bcc`
-- `replyTo`
-- `headers`
+- `subject`
+- `text`
+- `html`
+- `reply_to`
 - `attachments`
 
 ### get_configuration
@@ -70,9 +64,7 @@ curl -X POST "https://<worker>.workers.dev/mcp" \
         "to":["person@example.com"],
         "subject":"MCP test",
         "text":"Sent through MCP",
-        "cc":["ops@example.com"],
-        "bcc":["audit@example.com"],
-        "replyTo":["support@example.com"]
+        "reply_to":"support@example.com"
       }
     }
   }'

@@ -21,6 +21,7 @@ app.post("/api/send", async (c) => {
   const schema = z.object({
     to: z.union([z.string(), z.array(z.string())]),
     subject: z.string(),
+    replyTo: z.string().optional(),
     text: z.string().optional(),
     html: z.string().optional(),
     attachments: z.array(z.object({

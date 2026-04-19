@@ -54,6 +54,7 @@ export async function handleMCPRequest(request: MCPRequest, env: any): Promise<M
                   subject: { type: "string", description: "Email subject" },
                   text: { type: "string", description: "Plain text body" },
                   html: { type: "string", description: "HTML body (optional)" },
+                  reply_to: { type: "string", description: "Reply-To email address (optional)" },
                   from: { type: "string", description: "Sender email (must be authorized domain)" }
                 },
                 required: ["to", "subject", "text"]
@@ -69,6 +70,7 @@ export async function handleMCPRequest(request: MCPRequest, env: any): Promise<M
           const options: EmailOptions = {
             from: params.arguments.from || env.DEFAULT_SENDER || "no-reply@mail.wify.my",
             to: params.arguments.to,
+            replyTo: params.arguments.reply_to,
             subject: params.arguments.subject,
             text: params.arguments.text,
             html: params.arguments.html,

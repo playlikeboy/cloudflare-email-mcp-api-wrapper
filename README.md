@@ -93,6 +93,7 @@ Add to your `mcp_config.json`:
 ```json
 {
   "to": "recipient@example.com",
+  "replyTo": "support@example.com",
   "subject": "Hello from API",
   "html": "<h1>Professional Email</h1><p>Sent via Cloudflare Workers.</p>",
   "attachments": [

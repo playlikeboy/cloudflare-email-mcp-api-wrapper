@@ -12,6 +12,7 @@ export interface EmailOptions {
   to: string | string[];
   cc?: string | string[];
   bcc?: string | string[];
+  replyTo?: string;
   subject: string;
   text?: string;
   html?: string;
@@ -38,6 +39,10 @@ export async function createEmailMessage(options: EmailOptions): Promise<EmailMe
   if (options.bcc) {
     const bccList = Array.isArray(options.bcc) ? options.bcc : [options.bcc];
     bccList.forEach(addr => msg.addRecipient(addr, { type: 'bcc' }));
+  }
+
+  if (options.replyTo) {
+    msg.setHeader('Reply-To', options.replyTo);
   }
   
   msg.setSubject(options.subject);
